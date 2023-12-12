@@ -85,11 +85,9 @@ fn solution1(seeds: Vec<u64>, points: Vec<Vec<MAP>>) -> u64 {
 }
 
 fn solution2(seeds: Vec<u64>, points: Vec<Vec<MAP>>) -> u64 {
-    println!("{:?}", seeds);
     let mut answer = std::u64::MAX;
     let mut seed_ranges = Vec::new();
     for i in (0..seeds.len()).step_by(2) {
-        println!("{}, {}", seeds[i], seeds[i + 1]);
         for y in seeds[i]..seeds[i + 1] {
             seed_ranges.push(y);
         }

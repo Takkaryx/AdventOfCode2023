@@ -38,11 +38,6 @@ fn solution2(input: String) -> u64 {
         copies.insert(index as u64, 1);
     }
     for line in input.lines() {
-        // println!(
-        //     "CARD # {}, HAS {} COPIES",
-        //     card_num,
-        //     copies.get(&card_num).unwrap()
-        // );
         let data_sets = parse_line(line);
         let common_elements: HashSet<u64> =
             data_sets.0.intersection(&data_sets.1).cloned().collect();

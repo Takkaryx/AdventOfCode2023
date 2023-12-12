@@ -81,36 +81,36 @@ fn solution1(data: &(Vec<Seq>, HashMap<String, Coords>)) -> u64 {
     answer
 }
 
-fn solution2_proper(data: &(Vec<Seq>, HashMap<String, Coords>)) -> u64 {
-    let steps = data.0.clone();
-    let map = data.1.clone();
-    let temp: Vec<&String> = map.keys().filter(|key| key.ends_with('A')).collect();
-    let mut locs: Vec<String> = temp.iter().map(|s| s.to_string()).collect();
-    let mut answer = 0;
-    let mut current_step = 0;
+// fn solution2_proper(data: &(Vec<Seq>, HashMap<String, Coords>)) -> u64 {
+//     let steps = data.0.clone();
+//     let map = data.1.clone();
+//     let temp: Vec<&String> = map.keys().filter(|key| key.ends_with('A')).collect();
+//     let mut locs: Vec<String> = temp.iter().map(|s| s.to_string()).collect();
+//     let mut answer = 0;
+//     let mut current_step = 0;
 
-    loop {
-        let mut new_locs: Vec<String> = Vec::new();
-        for loc in &locs {
-            let curr_options = map.get(loc).unwrap();
-            let curr_step = steps[current_step];
-            new_locs.push(take_step(curr_step, curr_options));
-        }
-        answer += 1;
+//     loop {
+//         let mut new_locs: Vec<String> = Vec::new();
+//         for loc in &locs {
+//             let curr_options = map.get(loc).unwrap();
+//             let curr_step = steps[current_step];
+//             new_locs.push(take_step(curr_step, curr_options));
+//         }
+//         answer += 1;
 
-        if new_locs.iter().all(|s| s.ends_with('Z')) {
-            println!("{:?}", new_locs);
-            break;
-        }
+//         if new_locs.iter().all(|s| s.ends_with('Z')) {
+//             println!("{:?}", new_locs);
+//             break;
+//         }
 
-        locs.splice(0..locs.len(), new_locs);
-        current_step += 1;
-        if current_step >= steps.len() {
-            current_step = 0;
-        }
-    }
-    answer
-}
+//         locs.splice(0..locs.len(), new_locs);
+//         current_step += 1;
+//         if current_step >= steps.len() {
+//             current_step = 0;
+//         }
+//     }
+//     answer
+// }
 
 fn gcd(a: u64, b: u64) -> u64 {
     if b == 0 {
@@ -151,7 +151,6 @@ fn solution2_lcm(data: &(Vec<Seq>, HashMap<String, Coords>)) -> u64 {
             current_node_name = next_node_name;
             answer += 1;
         }
-        println!("number: {}", answer);
         multiples.push(answer);
     }
     lcm(&multiples).unwrap()
